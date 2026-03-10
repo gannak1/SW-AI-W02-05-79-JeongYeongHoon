@@ -12,10 +12,12 @@ n-1개의 위에 있는 것들을 2에서 3으로 옮기면 완료
 """
 
 
-top_height = int(input())
+top_height = int(input())  # 하노이 탑 수 인풋
 
 
-def hanoi_number(n):
+def hanoi_number(
+    n,
+):  # 간단하게 하노이 계산하는 함수, 하나에 묶기에 로직이 복잡하여 20개 초과일 경우 대비하여 제작
     if n == 1:
         return 1
     else:
@@ -24,14 +26,18 @@ def hanoi_number(n):
 
 def hanoi(n, source, target, auxiliary):
     if n > 20:
-        return
+        return  # 20개 초과일 경우 리턴하여 종료
 
     if n == 1:
-        print(f"{source} {target}")
+        print(f"{source} {target}")  # 1일 경우 소스에서 타겟으로 옮기는 과정
     else:
-        hanoi(n - 1, source, auxiliary, target)
+        hanoi(
+            n - 1, source, auxiliary, target
+        )  # n번째 하노이 element를 옮기기 위해서 n-1까지의 과정을 보조 하노이 기둥으로 옮겨야함
         print(f"{source} {target}")
-        hanoi(n - 1, auxiliary, target, source)
+        hanoi(
+            n - 1, auxiliary, target, source
+        )  # n번째 하노이를 옮긴 후 보조 하누이 기둥에서 목표 하노이 기둥으로 옮김
 
 
 hanoi_number(top_height)

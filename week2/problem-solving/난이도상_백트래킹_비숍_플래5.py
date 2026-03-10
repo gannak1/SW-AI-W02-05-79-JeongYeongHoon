@@ -13,37 +13,17 @@ input_chess = [
 # for i in range(int(input())):
 #     input_chess.append(list(map(int, input().split())))
 
+# 검은 칸 / 흰 칸을 어떻게 나눌까?
+
+# 각 칸의 두 대각선 번호를 어떻게 표현할까?
+
+# DFS에서 “놓는다 / 안 놓는다”를 어떻게 분기할까?
+black_coordinate = [[0] * 5 for _ in range(5)]
+white_coordinate = [[0] * 5 for _ in range(5)]
+
 
 def main(input_chess):
-    result = []
-    col_location = [-1] * len(input_chess)
-    diag1 = [-1] * len(input_chess) * 2
-    diag2 = [-1] * len(input_chess) * 2
-    max_count = [-1]
-
-    def backtracking(row, count):
-
-        for i in range(len(input_chess)):
-            if max_count[0] < count:
-                max_count[0] = count
-            if (
-                (col_location[i] != 1)
-                # and (diag1[row + i] != 1)
-                # and (diag1[row - i + len(input_chess)] != 1)
-                and input_chess[row][i] == 1
-            ):
-                col_location[i] = 1
-                diag1[row - i + len(input_chess)] = 1
-                diag1[row + i] = 1
-                count += 1
-                backtracking(row + 1, count)
-                col_location[i] = -1
-                diag1[row - i + len(input_chess)] = -1
-                diag1[row + i] = -1
-                count -= 1
-
-    backtracking(0, 0)
-    return max_count
+    1
 
 
-print(main(input_chess)[0])
+print(main(input_chess))

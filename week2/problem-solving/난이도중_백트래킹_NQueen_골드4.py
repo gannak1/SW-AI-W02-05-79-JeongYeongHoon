@@ -12,31 +12,30 @@ max_number = int(input())
 
 def main(N):
 
-    result = []
-    ban_position = [-1] * N
-    diag1 = [-1] * 2 * N
-    diag2 = [-1] * 2 * N
-    total_count = 0
+    col_position = [-1] * N  # 퀸의 세로 위치
+    diag1 = [-1] * 2 * N  # 퀸이 존재하는 대각선 1 위치
+    diag2 = [-1] * 2 * N  # 퀸이 존재하는 대각선 2 위치
+    total_count = 0  # 경우의 수
 
     def dfs(row, total_count, select_count):
-        if select_count == N:
-            total_count += 1
+        if select_count == N:  # 퀸의 위치가 모두 놓일 경우 (리턴 정보)
+            total_count += 1  # 경우의 수 1 추가
             return total_count
         if row == N:
-            return total_count
+            return total_count  # 최대 놓을 수 있는 개수가 초과하면 다시 원래대로 (index error 방지)
         for i in range(N):
             if (
-                ban_position[i] == -1
-                and diag1[row - i + N] != 1
-                and diag2[row + i] != 1
+                col_position[i] == -1  # 세로 위치에 없으면
+                and diag1[row - i + N] != 1  # 대각선 1 위치에 없으면
+                and diag2[row + i] != 1  # 대각선 2 위치에 없으면
             ):
-                diag1[row - i + N] = 1
-                diag2[row + i] = 1
-                ban_position[i] = 1
-                total_count = dfs(row + 1, total_count, select_count + 1)
-                ban_position[i] = -1
-                diag1[row - i + N] = -1
-                diag2[row + i] = -1
+                diag1[row - i + N] = 1  # 대각선 위치에 있다고 표시
+                diag2[row + i] = 1  # 대각선 위치에 있다고 표시
+                col_position[i] = 1  # 세로 위치에 있다고 표시
+                total_count = dfs(row + 1, total_count, select_count + 1)  # 다음으로
+                col_position[i] = -1  # 세로 위치에 없다고 표시
+                diag1[row - i + N] = -1  # 대각선 위치에 없다고 표시
+                diag2[row + i] = -1  # 대각선 위치에 없다고 표시
         return total_count
 
     total_count = dfs(0, total_count, 0)
