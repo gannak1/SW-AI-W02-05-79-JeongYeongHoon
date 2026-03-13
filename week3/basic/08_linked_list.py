@@ -22,41 +22,55 @@
 - print_list(): 모든 노드 출력
 """
 
+
 class Node:
     """연결 리스트의 노드"""
+
     def __init__(self, data):
         self.data = data
         self.next = None
 
+
 class LinkedList:
     """단순 연결 리스트"""
+
     def __init__(self):
         self.head = None
-    
+
     def append(self, data):
         """리스트 끝에 노드 추가"""
         new_node = Node(data)
-        
+
         # TODO: 리스트가 비어있으면 head를 new_node로 설정
-        pass
-        
+        if self.head == None:
+            self.head = new_node
+
         # TODO: 마지막 노드 찾기
-        pass
-        
-        # TODO: 마지막 노드의 next를 new_node로 설정
-        pass
-    
+        else:
+            last_node = self.head
+            while last_node.next != None:
+                last_node = last_node.next
+
+            # TODO: 마지막 노드의 next를 new_node로 설정
+            last_node.next = new_node
+
     def print_list(self):
         """리스트의 모든 값 출력"""
         values = []
-        
+
         # TODO: head부터 시작
-        pass
-        
+        head_node = self.head
+        values.append(head_node.data)
+
         # TODO: 끝까지 순회하며 값 수집
-        pass
-        
+        node_status = True
+        last_node = head_node.next
+        while last_node != None:
+            values.append(last_node.data)
+            last_node = last_node.next
+
         return values
+
 
 # 테스트 케이스
 if __name__ == "__main__":
@@ -69,7 +83,7 @@ if __name__ == "__main__":
     result = ll.print_list()
     print(f"리스트: {result}")
     print()
-    
+
     # 테스트 케이스 2
     print("=== 연결 리스트 테스트 2 ===")
     ll2 = LinkedList()
@@ -79,5 +93,3 @@ if __name__ == "__main__":
     ll2.append(40)
     result2 = ll2.print_list()
     print(f"리스트: {result2}")
-
-
