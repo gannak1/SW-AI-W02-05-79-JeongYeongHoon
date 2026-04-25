@@ -46,7 +46,35 @@ def make_change_greedy(change, coins):
     # TODO: 각 동전에 대해 반복
     ## 현재 동전으로 거슬러줄 수 있는 개수 계산    
     ## 개수가 0보다 크면 결과에 추가
-    pass
+    while change > 0:
+        if change >= 500:
+            if 500 not in result:
+                result[500] = 1
+            else:
+                result[500] += 1
+            change = change - 500
+            total_coins += 1
+        elif change >= 100:
+            if 100 not in result:
+                result[100] = 1
+            else:
+                result[100] += 1
+            change = change - 100
+            total_coins += 1
+        elif change >= 50:
+            if 50 not in result:
+                result[50] = 1
+            else:
+                result[50] += 1
+            change = change - 50
+            total_coins += 1
+        elif change >= 10:
+            if 10 not in result:
+                result[10] = 1
+            else:
+                result[10] += 1
+            change = change - 10
+            total_coins += 1
     
     return total_coins, result
 

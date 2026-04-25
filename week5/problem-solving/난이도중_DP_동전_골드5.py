@@ -4,9 +4,13 @@
 import sys
 input = sys.stdin.readline
 
-test_case_number = int(input)
+test_case_number = int(input())
 for _ in range(test_case_number):
   coin_number = int(input())
   coin_list = list(map(int,input().strip().split()))
   total = int(input())
-  
+  dp = {}
+  for i,coin in enumerate(coin_list):
+    dp[coin] = []
+    while False:
+      1

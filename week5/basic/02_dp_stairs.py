@@ -38,23 +38,33 @@ DP 문제 풀이 순서:
 def climb_stairs(n):
     """
     계단 오르기 (상향식 DP)
-    
+
     Args:
         n: 계단의 수
-    
+
     Returns:
         n번째 계단까지 오르는 방법의 수
     """
-    # TODO: 특별한 경우 처리
-    pass
-    
-    
+    if n < 1:
+        return 0
+
     # TODO: dp 배열 생성 및 초기화
-    pass
-    
+    dp = []
+
     # TODO: 작은 문제부터 차례로 계산
-    pass
-    
+    number_two_count = 0
+    two_position = 0
+    i = 0
+    while i <= n:
+        if i == 0:
+            dp.append(0)
+        elif i == 1:
+            dp.append(1)
+        elif i == 2:
+            dp.append(2)
+        else:
+            dp.append(dp[i - 1] + dp[i - 2])
+        i += 1
     return dp[n]
 
 # 테스트 케이스

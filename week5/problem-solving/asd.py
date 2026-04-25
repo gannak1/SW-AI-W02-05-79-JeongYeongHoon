@@ -1,6 +1,6 @@
-from cpuinfo import get_cpu_info
+class Solution:
+  def wordBreak(self, s: str, wordDict: list[str]) -> bool:
+    1
 
-info = get_cpu_info()
-
-print(info.keys())
-print(info['flags'])
+a = Solution()
+a.wordBreak("cars",["car","ca","rs"])

@@ -22,6 +22,34 @@
 - 이전 회의가 끝난 후에 시작하는 회의만 선택
 """
 
+def merge(arr,left,right):
+    mid = (left + right) // 2
+    left_arr = arr[left:mid+1]
+    right_arr = arr[mid+1:right+1]
+    i = 0
+    j = 0
+    left_arr.append([0,9999999999999999])
+    right_arr.append([0,9999999999999999])
+    for k in range(left,right+1):
+        if left_arr[i][1] <= right_arr[j][1]:
+            arr[k] = left_arr[i]
+            i += 1
+        else:
+            arr[k] = right_arr[j]
+            j += 1
+def merge_init(arr,left,right):
+    if left >= right:
+        return
+    mid = (left + right) // 2
+    merge_init(arr,left,mid)
+    merge_init(arr,mid+1,right)
+    merge(arr,left,right)
+def start(arr):
+    if len(arr) >0:
+        merge_init(arr,0,len(arr)-1)
+        return arr
+    else:
+        return arr
 def select_meetings(meetings):
     """
     회의실 배정 (그리디)
@@ -33,20 +61,27 @@ def select_meetings(meetings):
         (배정된 회의 개수, 선택된 회의 리스트)
     """
     # TODO: 회의가 없으면 0 반환
-    pass
+    if not meetings:
+        return 0
     
     # TODO: 종료 시간 기준으로 정렬
-    pass
+    meetings = start(meetings)
+
+
+
     
     selected = []
     
     # TODO: 첫 번째 회의 선택
-    pass
+    selected.append(meetings[0])
     
     # TODO: 나머지 회의들 확인
     ## 이전 회의가 끝난 후 시작하는 회의만 선택
-    pass
-    
+    check_number = 1
+    while check_number < len(meetings):
+        if selected[-1][1] < meetings[check_number][0]:
+            selected.append(meetings[check_number])
+        check_number += 1
     return len(selected), selected
 
 # 테스트 케이스
